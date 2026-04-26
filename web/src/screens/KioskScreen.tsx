@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type SyntheticEvent } from 'react'
 import { Link } from 'react-router-dom'
 import {
+  Bookmark,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
+  Clock,
   Clock3 as ClockIcon,
   Cloud,
   CloudDrizzle,
@@ -13,14 +15,24 @@ import {
   CloudSnow,
   Droplets,
   Heart,
+  Home,
   Info,
+  LayoutGrid,
   MapPin,
+  Menu,
+  Mic,
   Pause,
   Play,
+  Plus,
+  QrCode,
   Quote,
+  Radio,
+  Search,
   Settings2,
   Sun,
   Thermometer,
+  TrendingUp,
+  UserCircle,
   Volume2,
   Wind,
 } from 'lucide-react'
@@ -107,6 +119,7 @@ export function KioskScreen() {
   const [isWeatherDetailsOpen, setIsWeatherDetailsOpen] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(Boolean(document.fullscreenElement))
   const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 720)
   const wakeLockRef = useRef<WakeLockSentinelLike | null>(null)
 
   const activeQuote = useMemo(() => {
@@ -189,12 +202,18 @@ export function KioskScreen() {
       setInstallPromptEvent(event as BeforeInstallPromptEvent)
     }
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 720)
+    }
+
     document.addEventListener('fullscreenchange', handleFullscreenChange)
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    window.addEventListener('resize', handleResize)
 
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange)
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -267,6 +286,157 @@ export function KioskScreen() {
     }
 
     setSlideshowIndex((currentIndex) => (currentIndex + 1) % snapshot.photos.length)
+  }
+
+  if (isMobile) {
+    return (
+      <main className="mobile-app-shell">
+        <header className="mobile-header">
+          <Menu size={24} />
+          <span className="mobile-header-title">Dashboard Variant 1: Card Layout</span>
+          <UserCircle size={28} />
+        </header>
+
+        <section className="mobile-content-stack">
+          {featuredStation ? (
+            <article className="mobile-card mobile-radio-card">
+              <div className="mobile-radio-logo-shell">
+                {featuredStation.logoUrl ? (
+                  <img alt="" onError={useDefaultLogoOnError} src={featuredStation.logoUrl} />
+                ) : (
+                  <Radio size={24} />
+                )}
+              </div>
+              <div className="mobile-radio-info">
+                <strong>{featuredStation.name}</strong>
+                <p>Şu an çalan: {playback.status === 'playing' ? 'Canlı Yayın' : 'Yayına hazır'}</p>
+              </div>
+              <div className="mobile-radio-actions">
+                <div className="on-air-badge">
+                  <span className="pulse-dot" />
+                  ON AIR
+                </div>
+                <button
+                  className="mobile-play-btn"
+                  onClick={() => {
+                    if (playback.activeStationId === featuredStation.id && playback.status === 'playing') {
+                      stopPlayback()
+                    } else {
+                      void playStation(featuredStation.id)
+                    }
+                  }}
+                  type="button"
+                >
+                  {playback.activeStationId === featuredStation.id && playback.status === 'playing' ? 'Durdur' : 'Dinle'}
+                </button>
+              </div>
+            </article>
+          ) : null}
+
+          <div className="mobile-info-row">
+            <article className="mobile-card mobile-time-card">
+              <div className="mobile-icon-circle">
+                <Clock size={20} />
+              </div>
+              <div className="mobile-time-info">
+                <strong>{clock.time.substring(0, 5)}</strong>
+                <span>{clock.date.split(' ').slice(1).join(' ')}</span>
+              </div>
+            </article>
+
+            <article className="mobile-card mobile-weather-card">
+              <div className="mobile-icon-circle weather-icon-accent">
+                {(() => {
+                  const WeatherIcon = weatherIcon
+                  return <WeatherIcon size={20} />
+                })()}
+              </div>
+              <div className="mobile-weather-info">
+                <strong>{snapshot.weatherCache ? `${Math.round(snapshot.weatherCache.temperature)}°C` : '--°C'}</strong>
+                <span>{snapshot.weatherCache ? `${snapshot.weatherCache.cityName}, ${getConditionLabel(snapshot.weatherCache.conditionCode)}` : 'Konum alınıyor'}</span>
+              </div>
+            </article>
+          </div>
+
+          <div className="mobile-search-bar">
+            <Search className="search-icon-dim" size={18} />
+            <input placeholder="Google'da ara veya URL yazın" readOnly type="text" />
+            <Mic size={18} />
+            <QrCode size={18} />
+          </div>
+
+          {snapshot.photos.length > 0 ? (
+            <div className="mobile-photo-scroller">
+              {snapshot.photos.map((photo) => (
+                <img alt={photo.name} className="mobile-photo-thumb" key={photo.id} src={photo.blobRef} />
+              ))}
+            </div>
+          ) : null}
+
+          <article className="mobile-card mobile-shortcuts-card">
+            <div className="shortcuts-grid">
+              <div className="shortcut-item">
+                <div className="shortcut-icon-box"><img alt="Google" src="https://www.google.com/favicon.ico" /></div>
+                <span>Google</span>
+              </div>
+              <div className="shortcut-item">
+                <div className="shortcut-icon-box"><img alt="YouTube" src="https://www.youtube.com/favicon.ico" /></div>
+                <span>YouTube</span>
+              </div>
+              <div className="shortcut-item">
+                <div className="shortcut-icon-box"><img alt="Facebook" src="https://www.facebook.com/favicon.ico" /></div>
+                <span>Facebook</span>
+              </div>
+              <div className="shortcut-item">
+                <div className="shortcut-icon-box"><TrendingUp size={20} /></div>
+                <span>Borsa</span>
+              </div>
+              <div className="shortcut-item">
+                <div className="shortcut-icon-box"><img alt="Wikipedia" src="https://www.wikipedia.org/favicon.ico" /></div>
+                <span>Wikipedia</span>
+              </div>
+              <div className="shortcut-item">
+                <div className="shortcut-icon-box add-btn-accent"><Plus size={20} /></div>
+                <span>Ekle</span>
+              </div>
+            </div>
+          </article>
+
+          <article className="mobile-card mobile-finance-card">
+            <div className="finance-ticker-top">
+              <span className="finance-kicker">SON DAKİKA</span>
+              <p className="finance-headline">Merkez Bankası faiz kararını açıkladı</p>
+            </div>
+            <div className="finance-ticker-grid">
+              <div className="ticker-col">
+                <span className="ticker-label">BIST 100</span>
+                <strong className="ticker-value">9.876,54</strong>
+                <span className="ticker-trend trend-up">↑%1,25</span>
+              </div>
+              <div className="ticker-col">
+                <span className="ticker-label">USD / TRY</span>
+                <strong className="ticker-value">30,1450</strong>
+                <span className="ticker-trend trend-up">↑%0,18</span>
+              </div>
+            </div>
+          </article>
+
+          <div className="mobile-ad-placeholder">
+            <div className="ad-content">
+              <div className="ad-icon-bg" />
+              <span>REKLAM ALANI 728 x 90</span>
+            </div>
+          </div>
+        </section>
+
+        <nav className="mobile-bottom-nav">
+          <button className="nav-btn nav-btn-active" type="button"><Home size={22} /></button>
+          <button className="nav-btn" type="button"><Clock size={22} /></button>
+          <button className="nav-btn" type="button"><Bookmark size={22} /></button>
+          <Link className="nav-btn" to="/settings"><LayoutGrid size={22} /></Link>
+        </nav>
+      </main>
+    )
   }
 
   return (
