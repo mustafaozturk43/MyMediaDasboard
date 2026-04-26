@@ -2492,50 +2492,49 @@ blockquote {
 }
 
 @media (max-width: 720px) {
+  /* ─── Phone Shell ────────────────────────────────────── */
   .kiosk-shell,
   .settings-shell {
-    padding: 10px;
-    gap: 12px;
+    padding: 8px;
+    gap: 10px;
   }
 
   .hero-panel,
   .settings-hero-panel,
   .panel {
-    border-radius: 24px;
+    border-radius: 20px;
   }
 
+  /* ─── Phone Hero / Header ────────────────────────────── */
   .hero-panel,
   .settings-hero-panel {
     align-items: center;
-    gap: 12px;
-    padding-inline: 14px;
-    min-height: 76px;
-    max-height: 92px;
+    gap: 10px;
+    padding: 10px 14px;
+    min-height: 56px;
+    max-height: 64px;
+    border-radius: 16px;
   }
 
   .brand-title-row {
-    gap: 10px;
+    gap: 8px;
   }
 
   .brand-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   }
 
   .hero-panel h1,
   .settings-header h1 {
-    font-size: clamp(1.45rem, 7vw, 2.1rem);
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
   }
 
   .hero-copy {
     display: none;
-  }
-
-  .hero-actions,
-  .action-row,
-  .entity-actions {
-    width: 100%;
   }
 
   .hero-actions {
@@ -2543,22 +2542,428 @@ blockquote {
     transform: none;
     width: auto;
     flex-wrap: nowrap;
-    gap: 8px;
+    gap: 6px;
   }
 
   .hero-actions .secondary-button {
-    padding: 0.68rem 0.85rem;
-    font-size: 0.8rem;
+    display: none;
   }
 
   .settings-button {
-    width: 46px;
-    height: 46px;
-    min-height: 46px;
+    width: 38px;
+    height: 38px;
+    min-height: 38px;
+    font-size: 1.1rem;
   }
 
+  /* ─── Phone Grid: Card Layout ────────────────────────── */
+  .kiosk-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'radio    radio'
+      'clock    weather'
+      'slideshow slideshow'
+      'quote    quote';
+    gap: 10px;
+  }
 
+  .panel {
+    min-height: 0;
+    padding: 14px;
+    border-radius: 20px;
+  }
 
+  /* ─── Radio Card: Compact Horizontal ─────────────────── */
+  .panel-radio {
+    grid-area: radio;
+    min-height: 0;
+    padding: 10px 14px;
+    border-radius: 20px;
+  }
+
+  .panel-radio .radio-stack {
+    margin-top: 0;
+    gap: 10px;
+  }
+
+  .panel-radio .media-card {
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .panel-radio .media-card-glow {
+    width: 100px;
+    height: 100px;
+    right: -40px;
+    top: -50px;
+    filter: blur(20px);
+  }
+
+  .panel-radio .media-player-head {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .panel-radio .media-cover-wrap {
+    flex: 0 0 auto;
+  }
+
+  .panel-radio .media-cover {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+  }
+
+  .panel-radio .live-orb {
+    width: 12px;
+    height: 12px;
+    border-width: 3px;
+    right: -2px;
+    bottom: -2px;
+  }
+
+  .panel-radio .media-title-block {
+    flex: 1;
+    min-width: 0;
+    gap: 2px;
+  }
+
+  .panel-radio .media-title-block strong {
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .panel-radio .media-kicker {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+
+  .panel-radio .radio-status {
+    font-size: 0.72rem;
+  }
+
+  .panel-radio .media-wave {
+    height: 32px;
+    margin: 8px 0;
+    border-radius: 12px;
+    gap: 5px;
+  }
+
+  .panel-radio .media-wave span {
+    width: 4px;
+  }
+
+  .panel-radio .media-wave span:nth-child(1) { height: 10px; }
+  .panel-radio .media-wave span:nth-child(2) { height: 18px; }
+  .panel-radio .media-wave span:nth-child(3) { height: 13px; }
+  .panel-radio .media-wave span:nth-child(4) { height: 24px; }
+  .panel-radio .media-wave span:nth-child(5) { height: 16px; }
+  .panel-radio .media-wave span:nth-child(6) { height: 22px; }
+  .panel-radio .media-wave span:nth-child(7) { height: 12px; }
+  .panel-radio .media-wave span:nth-child(8) { height: 20px; }
+
+  .panel-radio .media-favorite-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .panel-radio .media-favorite-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .panel-radio .player-controls {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-radio .media-play-button {
+    min-width: 100px;
+    padding: 0.52rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .panel-radio .volume-control {
+    padding: 0.48rem 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  .panel-radio .volume-control input {
+    width: 60px;
+  }
+
+  /* Station Chips: Horizontal Scroll */
+  .panel-radio .station-grid {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .panel-radio .station-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .panel-radio .station-chip {
+    flex: 0 0 auto;
+    min-width: 120px;
+    max-width: 160px;
+    padding: 8px 10px;
+    border-radius: 14px;
+    gap: 8px;
+  }
+
+  .panel-radio .station-chip-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .panel-radio .station-chip-copy strong {
+    font-size: 0.72rem;
+  }
+
+  .panel-radio .station-chip-copy span {
+    font-size: 0.6rem;
+  }
+
+  .panel-radio .favorite-chip-icon {
+    display: none;
+  }
+
+  /* ─── Clock Card: Compact ────────────────────────────── */
+  .panel-clock {
+    grid-area: clock;
+    min-height: 0;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .panel-clock .clock-card-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .panel-clock .clock-icon-orbit {
+    width: 42px;
+    height: 42px;
+  }
+
+  .panel-clock .clock-icon-shell {
+    width: 32px;
+    height: 32px;
+  }
+
+  .panel-clock .clock-icon-shell svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .panel-clock .clock-info {
+    justify-items: center;
+    gap: 6px;
+  }
+
+  .panel-clock .clock-value {
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: -0.04em;
+  }
+
+  .panel-clock .calendar-chip {
+    padding: 0.36rem 0.6rem;
+    font-size: 0.62rem;
+    gap: 6px;
+  }
+
+  .panel-clock .calendar-chip svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ─── Weather Card: Compact ──────────────────────────── */
+  .panel-weather {
+    grid-area: weather;
+    min-height: 0;
+    padding: 14px;
+  }
+
+  .panel-weather .weather-dashboard {
+    gap: 8px;
+  }
+
+  .panel-weather .weather-hero-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .panel-weather .weather-icon-shell-large {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  .panel-weather .weather-icon-shell-large svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .panel-weather .weather-temperature {
+    font-size: 2rem;
+  }
+
+  .panel-weather .weather-condition-label {
+    font-size: 0.72rem;
+  }
+
+  .panel-weather .weather-location-bar {
+    align-self: center;
+    padding: 0.24rem 0.52rem;
+    font-size: 0.64rem;
+  }
+
+  .panel-weather .weather-time-badge {
+    display: none;
+  }
+
+  .panel-weather .weather-metric-strip {
+    display: none;
+  }
+
+  .panel-weather .weather-detail-button {
+    display: inline-flex;
+    padding: 0.36rem 0.52rem;
+    font-size: 0.66rem;
+  }
+
+  .panel-weather .weather-forecast-strip {
+    gap: 4px;
+  }
+
+  .panel-weather .forecast-day {
+    padding: 5px 4px;
+    border-radius: 10px;
+    gap: 3px;
+  }
+
+  .panel-weather .forecast-day-label {
+    font-size: 0.52rem;
+  }
+
+  .panel-weather .forecast-day-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+  }
+
+  .panel-weather .forecast-day-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .panel-weather .forecast-day-temps strong {
+    font-size: 0.64rem;
+  }
+
+  .panel-weather .forecast-day-temps span {
+    font-size: 0.52rem;
+  }
+
+  .panel-weather .weather-refresh-note {
+    display: none;
+  }
+
+  /* ─── Slideshow: Horizontal Thumbnails ───────────────── */
+  .panel-slideshow {
+    grid-area: slideshow;
+    min-height: 0;
+    padding: 12px 14px;
+  }
+
+  .panel-slideshow .slideshow-stack {
+    margin-top: 0;
+    gap: 8px;
+  }
+
+  .panel-slideshow .slideshow-meta-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-slideshow .slideshow-meta-row .panel-empty {
+    font-size: 0.78rem;
+    margin: 0;
+  }
+
+  .panel-slideshow .entity-actions {
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .panel-slideshow .slideshow-control-button,
+  .panel-slideshow .icon-circle-button {
+    width: 34px;
+    height: 34px;
+    min-height: 34px;
+  }
+
+  .panel-slideshow .slideshow-control-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .panel-slideshow .slideshow-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+
+  /* ─── Quote Card: Compact ────────────────────────────── */
+  .panel-quote {
+    grid-area: quote;
+    min-height: 0;
+    padding: 14px;
+  }
+
+  .panel-quote .quote-card-content {
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .panel-quote .quote-icon-shell {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    flex: 0 0 auto;
+  }
+
+  .panel-quote .quote-icon-shell svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .panel-quote .quote-display {
+    font-size: clamp(0.88rem, 4vw, 1.15rem);
+    line-height: 1.3;
+    max-width: none;
+    text-align: left;
+  }
+
+  /* ─── Settings (Phone) ───────────────────────────────── */
   .settings-tab-btn {
     padding: 0.6rem 0.7rem;
     font-size: 0.78rem;
@@ -2589,103 +2994,21 @@ blockquote {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .station-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .hero-actions,
+  .action-row,
+  .entity-actions {
+    width: auto;
   }
 
   .station-select-field {
     display: grid;
   }
 
-  .panel-clock,
-  .panel-radio,
-  .panel-weather,
-  .panel-quote {
-    min-height: min(230px, 42svh);
-  }
-
-  .panel-slideshow {
-    min-height: min(260px, 42svh);
-  }
-
-  .slideshow-image {
-    aspect-ratio: 4 / 3;
-    border-radius: 20px;
-  }
-
-  .slideshow-control-button,
-  .icon-circle-button {
-    width: 40px;
-    height: 40px;
-    min-height: 40px;
-  }
-
-  .media-cover {
-    width: 68px;
-    height: 68px;
-    border-radius: 22px;
-  }
-
-  .station-chip-logo {
-    width: 38px;
-    height: 38px;
-  }
-
-  .weather-hero-row {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .weather-location-bar {
-    align-self: center;
-  }
-
-  .weather-metric-strip {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .weather-stat {
-    flex-direction: row;
-    padding: 10px 14px;
-  }
-
-  .weather-detail-button {
-    display: inline-flex;
-  }
-
-  .weather-forecast-strip {
-    gap: 6px;
-  }
-
-  .forecast-day {
-    padding: 8px 6px;
-  }
-
   .weather-metric-pill {
     min-height: 72px;
   }
 
-  .quote-display {
-    font-size: clamp(1.55rem, 8vw, 2.05rem);
-    max-width: 16ch;
+  .radio-panel-empty {
+    font-size: 0.82rem;
   }
-
-  .quote-icon-shell {
-    width: 48px;
-    height: 48px;
-    border-radius: 18px;
-  }
-
-  .slideshow-meta-row,
-  .weather-summary,
-  .media-player-head,
-  .player-controls {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-
 }
