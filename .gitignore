@@ -25,4 +25,5 @@ dist-ssr
 .agent/* 
 .kilo/*  
 *.bak*
-AGENT.md
+*.md
+!README.md
