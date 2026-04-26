@@ -1,0 +1,50 @@
+[
+  {
+    "ADI": "Kral Pop Radyo",
+    "TUR": "Türkçe Pop",
+    "LINK": "http://46.20.3.201:80/",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "Pal Nostalji",
+    "TUR": "Türkçe Klasik",
+    "LINK": "http://shoutcast.radyogrup.com:1010/;",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "Radyo 45'lik",
+    "TUR": "Türkçe Klasik",
+    "LINK": "http://stream.radyo45lik.com:4545/stream",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "TRT Fm",
+    "TUR": "Türkçe Pop",
+    "LINK": "https://trt.radyotvonline.net/trtfm",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "Radyo Trafik",
+    "TUR": "Yol Marmara",
+    "LINK": "http://46.20.3.201:80/",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "Radyo Viva",
+    "TUR": "Türkçe Pop",
+    "LINK": "http://46.20.3.230/;",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "Kral Fm",
+    "TUR": "Arabesk",
+    "LINK": "http://46.20.3.204:80/",
+    "IMAGE": ""
+  },
+  {
+    "ADI": "Best Fm",
+    "TUR": "Türkçe Pop",
+    "LINK": "http://46.20.7.125/listen.pls",
+    "IMAGE": ""
+  }
+]

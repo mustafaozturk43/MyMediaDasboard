@@ -1,0 +1,18 @@
+{
+  "name": "MyMedia",
+  "short_name": "MyMedia",
+  "description": "Tablet ve kiosk ekranlari icin radyo ve multimedya panosu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
